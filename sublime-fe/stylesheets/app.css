@@ -1,0 +1,42 @@
+.padding-15 {
+    padding-left: 15px;
+}
+
+.padding-5 {
+    padding-left: 5px;
+}
+
+#result {
+    min-width: 300px;
+    min-height: 130px;
+    border: 1px solid #ced4da;
+    border-radius: 9px;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #495057;
+}
+
+#btnSubmit {
+    background-color: blue
+}
+
+#border-top {
+    border-top: 3px solid blue;
+}
+
+img {
+    width: 100px; 
+    height: 100px; 
+    border-radius: 50%;
+}
+
+#img-div {
+    text-align: center; 
+    margin-top: 20px; 
+    margin-bottom: 30px
+}
+
+#text-app-div {
+    text-align:center; 
+    margin-bottom: 10px
+}

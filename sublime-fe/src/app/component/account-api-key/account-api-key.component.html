@@ -1,0 +1,202 @@
+<div class="settings">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="logo-ctnr">
+                    <img class="logo" src="assets/img/logo200ppi.png"/>
+                </div>
+            </div>
+            <div class="col-6 title" style="padding: 0px; cursor: pointer;">
+                <div (click)="logout()" class="login">
+                    {{"signIn.logout" | translate}}
+                    <img class="arrow d-md-inline-block" src="../../../assets/img/arrow-right-blue.svg"
+                         style="cursor: pointer;width: 45px"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="settings-nav-ctnr">
+                <div class="basic-info-ctnr">
+                    <a routerLink="/basic-info">{{"tab.basicInfo" | translate}}</a>
+                </div>
+                <div class="basic-info-ctnr">
+                    <a class="active" routerLink="/transactions">Transactions</a>
+                </div>
+            </div>
+        </div>
+        <div class="row api-keys">
+            <div class="col-md-null-error12">
+                <h4>Transactions</h4>
+            </div>
+
+            <div class="padding-top-20 col-md-12"></div>
+
+            <div class="col-md-12 create-asset">
+                <input [(ngModel)]="address" class="form-control address margin-right-15" placeholder="Email"
+                       type="email"/>
+                <!--<select [(ngModel)]="currencySelected" class="custom-select margin-right-15">
+                  <option value="" selected>Select a currency</option>
+                  <option *ngFor="let currency of currencies" value="{{currency.value}}">{{currency.text}}</option>
+                </select>-->
+                <input [(ngModel)]="amount" class="form-control n-value margin-right-15" placeholder="Amount"
+                       type="number"/>
+                <button (click)="transferTransaction()" class="btn btn-primary add-key-btn" type="button">
+                    Transfer
+                </button>
+                <div class="null-error error hide">{{errorMessage}}</div>
+                <div class="request-error error hide">The transaction can't transfer.</div>
+            </div>
+
+            <div class="padding-top-20"></div>
+
+            <div class="col-12">
+                <table>
+                    <thead>
+                    <tr>
+                        <td class="">Transaction Id</td>
+                        <td class="">To Address</td>
+                        <td class="">Category</td>
+                        <td class="">Asset</td>
+                        <td class="">Amount</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngIf="!transactions || !transactions.length" class="text-center">
+                        <td colspan="4">No Transactions</td>
+                    </tr>
+                    <ng-template [ngIf]="transactions && transactions.length">
+                        <tr *ngFor="let transaction of transactions; let i=index">
+                            <td>{{transaction.txid}}</td>
+                            <td>{{transaction.address}}</td>
+                            <td>{{transaction.category}}</td>
+                            <td>{{transaction.asset}}</td>
+                            <td>{{transaction.amount}}</td>
+                        </tr>
+                    </ng-template>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="addApiKey">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="view-created-api-key-modal">
+                <div class="modal-header">
+                    <p class="title">{{"tab.apiKey.addApiKey" | translate}}</p>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="col-12">
+                    <label for="desc">{{"tab.apiKey.description" | translate}}</label>
+                    <input class="form-control" id="desc" name="desc" [(ngModel)]="desc"/>
+                </div>
+                <div class="col-12">
+                    <label for="desc">{{"tab.apiKey.ipWhitelist" | translate}}</label>
+                    <input class="form-control" id="ip" name="ip" [(ngModel)]="ipWhitelist"/>
+                </div>
+                <div class="padding-top-10"></div>
+                <div class="col-12">
+                    <div class="btn btn-primary" (click)="generateApiToken()">{{"tab.apiKey.save" | translate}}</div>
+                    <div class="btn btn-warning" data-dismiss="modal" style="margin-left: 10px;"
+                         id="closeAddApiKeybtn">{{"tab.apiKey.close" | translate}}</div>
+                    <div class="padding-top-10"></div>
+                    <p class="warning1">{{errorMessage}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="createdApiKey">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="view-created-api-key-modal">
+                <div class="modal-header">
+                    <p class="title">{{"resetPasswordSent.success" | translate}}</p>
+                </div>
+                <div class="fa fa-times"></div>
+            </div>
+            <div class="modal-body">
+                <p class="desc">{{"tab.apiKey.apiKey" | translate}}</p>
+                <p class="value">{{generatedApiToken?.apiKey}}</p>
+                <p class="desc">{{"tab.apiKey.secretKey" | translate}}</p>
+                <p class="value">{{generatedApiToken?.secretKey}}</p>
+                <p class="warning1">{{"tab.apiKey.successFirstMessage" | translate}}</p>
+                <p class="warning2">{{"tab.apiKey.successSecondMessage" | translate}}</p>
+                <div class="btn btn-warning" data-dismiss="modal">{{"tab.apiKey.close" | translate}}</div>
+                <div class="btn btn-warning" data-toggle="modal" data-target="#createdApiKey"
+                     style="margin-left: 10px; display: none" id="openCreatedApiKeyBtn">
+                    {{"tab.apiKey.open" | translate}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" *ngIf="selectedApiToken" role="dialog" id="viewApiKey">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="view-created-api-key-modal">
+                <div class="modal-header">
+                    <p class="title">{{"tab.apiKey.apiKey" | translate}}</p>
+                </div>
+                <div class="fa fa-times"></div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6">
+                        <p class="desc">{{"tab.apiKey.apiKey" | translate}}</p>
+                        <p class="value">{{selectedApiToken?.apiKey}}</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="desc">{{"tab.apiKey.created" | translate}}</p>
+                        <p class="value">{{selectedApiToken?.createdAt}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="desc">{{"tab.apiKey.ipWhitelist" | translate}} <span
+                                style="cursor: pointer; color: blue;" (click)="addIpWhitelistView()">
+              {{"tab.apiKey.edit" | translate}}
+            </span></p>
+                        <p class="value">{{selectedApiToken?.ipWhitelist}}</p>
+                        <div id="ipWhiteList" class="hidden">
+                            <div tabindex="-1" id="addIpWhitelist">
+                                <div class="row" style="padding: 0px">
+                                    <div class="col-12" style="padding: 0px">
+                                        <p class="desc">{{"tab.apiKey.ipWhitelist" | translate}}</p>
+                                        <input class="form-control" id="ipAddress" name="ipAddress"
+                                               [(ngModel)]="selectedApiToken.ipWhitelist"/>
+
+                                        <div class="col-12" style="padding: 0px; padding-top: 5px">
+                                            <div class="btn btn-danger"
+                                                 (click)="closeIpWhitelistView()">{{"tab.apiKey.cancel" | translate}}</div>
+                                            <div class="btn btn-primary" (click)="updateIpWhitelist()"
+                                                 style="margin-left: 10px;">{{"tab.apiKey.save" | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <p class="desc">{{"tab.apiKey.owner" | translate}}</p>
+                        <p class="value">{{selectedApiToken?.owner}}</p>
+                    </div>
+                </div>
+                <div class="padding-top-10"></div>
+                <div class="col-12">
+                    <div class="btn btn-danger" (click)="deleteApiKey()">{{"tab.apiKey.delete" | translate}}</div>
+                    <div class="btn btn-warning" data-dismiss="modal" style="margin-left: 10px;"
+                         id="closeViewApiKeyBtn">{{"tab.apiKey.close" | translate}}</div>
+                </div>
+                <div class="padding-top-10"></div>
+                <!--<p class="warning1">Error: asfdasdfafsd is not a valid value for IP Address. Exception ID: N47A77</p>-->
+            </div>
+        </div>
+    </div>
+</div>

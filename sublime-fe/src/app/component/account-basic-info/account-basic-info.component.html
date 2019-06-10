@@ -1,0 +1,83 @@
+<div class="settings">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <div class="logo-ctnr">
+          <img class="logo" src="assets/img/logo200ppi.png" />
+        </div>
+      </div>
+      <div class="col-6 title" style="padding: 0px; cursor: pointer;">
+        <div (click)="logout()" class="login">
+          {{"signIn.logout" | translate}}
+          <img class="arrow d-md-inline-block" src="../../../assets/img/arrow-right-blue.svg" style="cursor: pointer;width: 45px" />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="settings-nav-ctnr">
+        <div class="basic-info-ctnr">
+          <a routerLink="/basic-info" class="active">{{"tab.basicInfo" | translate}}</a></div>
+        <div class="basic-info-ctnr">
+          <a routerLink="/api-keys">Transactions</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row api-keys">
+      <div class="col-md-4 profile-header">
+        <div class="col-12"><h4>{{"tab.basicInfo.profile" | translate}}</h4></div>
+        <div class="col-12 user-name">
+          <img src="https://www.gravatar.com/avatar/?s=100&d=mm"/> &nbsp;
+          {{account?.id}}
+        </div>
+        <div class="col-12">{{"tab.basicInfo.email" | translate}} : {{account?.email}}</div>
+        <div class="col-12">Party : {{account?.partyName}}</div>
+        <div class="col-12">Base Currency : {{account?.currency}}</div>
+      </div>
+      <div class="col-md-8 profile-body-wrap">
+        <div class="profile-body">
+          <div class="col-12"><h4>{{"tab.basicInfo.assets" | translate}}</h4></div>
+
+          <div class="padding-top-20"></div>
+
+          <div class="col-12 create-asset">
+            <select [(ngModel)]="currencySelected" class="custom-select">
+              <option value="" selected>Select a currency</option>
+              <option *ngFor="let currency of currencies" value="{{currency.value}}">{{currency.text}}</option>
+            </select>
+            <button type="button" class="btn btn-primary add-key-btn" (click)="generateAsset()">
+              {{"tab.apiKey.generate" | translate}}
+            </button>
+          </div>
+
+          <div class="col-12">
+            <table>
+              <thead>
+                <tr>
+                  <td class="currency">Currency</td>
+                  <td class="hex">Hex</td>
+                  <td class="asset-value">Value</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngIf="!assets || !assets.length" class="text-center">
+                  <td colspan="4">No Asset</td>
+                </tr>
+                <ng-template [ngIf]="assets && assets.length">
+                  <tr *ngFor="let asset of assets; let i=index">
+                    <td>{{asset.id}}</td>
+                    <td class="hex-number">{{asset.hex}}</td>
+                    <td>{{asset.amount}}</td>
+                  </tr>
+                </ng-template>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="padding-top-20"></div>
+        </div>
+        <div class="col-12 padding-top-20"></div>
+      </div>
+    </div>
+  </div>
+</div>

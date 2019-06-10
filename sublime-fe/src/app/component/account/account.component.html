@@ -1,0 +1,76 @@
+<div id="border-top">&nbsp;</div>
+<div class="container">
+  <div class="col-md-8 offset-md-2" id="img-div">
+    <img src="assets/img/logo200ppi.png"/>
+  </div>
+  <div class="col-md-8 offset-md-2" id="text-app-div">
+    <h1>Key Generator</h1>
+  </div>
+  <div class="col-md-8 offset-md-2">
+    <div class="row row-space">
+      <div class="col-6">
+        <label for="firstNameTxt">First name</label>
+        <input [(ngModel)]="account.firstName" aria-describedby="emailHelp" class="form-control" id="firstNameTxt"
+               placeholder="First name" type="email">
+      </div>
+      <div class="col-6">
+        <label for="lastNameTxt">Last name</label>
+        <input [(ngModel)]="account.lastName" aria-describedby="emailHelp" class="form-control" id="lastNameTxt"
+               placeholder="Last name" type="email">
+      </div>
+    </div>
+    <div class="row row-space">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="languageDdl">Language</label>
+          <select [(ngModel)]="account.language" class="form-control" id="languageDdl">
+            <option *ngFor="let lang of languages" value="{{lang.key}}">{{lang.value}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label for="accountTypeDdl">Account type</label>
+          <select [(ngModel)]="account.accountType" class="form-control" id="accountTypeDdl">
+            <option *ngFor="let accountType of accountTypes" value="{{accountType.key}}">{{accountType.value}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row row-space">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="countryDdl">Country</label>
+          <select [(ngModel)]="account.country" class="form-control" id="countryDdl">
+            <option *ngFor="let country of countries" value="{{country.key}}">{{country.value}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-6">
+        <label for="emailTxt">Email</label>
+        <input [(ngModel)]="account.email" aria-describedby="emailHelp" class="form-control" id="emailTxt"
+               placeholder="Email" type="email">
+      </div>
+    </div>
+    <div class="row row-space">
+      <div class="col-6">
+        <label for="phoneTxt">Phone</label>
+        <input [(ngModel)]="account.cellphone" aria-describedby="emailHelp" class="form-control" id="phoneTxt"
+               placeholder="Phone" type="email">
+      </div>
+      <div class="col-6">
+        <label for="passwordTxt">Password</label>
+        <input [(ngModel)]="account.password" aria-describedby="emailHelp" class="form-control" id="passwordTxt"
+               placeholder="Password" type="email">
+      </div>
+    </div>
+    <div style="text-align: center; padding-top: 15px;">
+      <button class="btn btn-primary" id="btnSubmit" (click)="submit()" type="button">Submit</button>
+    </div>
+  </div>
+  <div class="col-md-8 offset-md-2">
+    <p class="padding-5" id="result">
+      {{ contentResult }}
+    </p>
+  </div>
+</div>

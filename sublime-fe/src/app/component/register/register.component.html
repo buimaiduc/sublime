@@ -1,0 +1,118 @@
+<div>
+  <div class="row formContainer">
+    <div class="col-md-6 col-sm-12 bg-color d-md-block">
+      <div class="col-md-8 offset-md-2" id="img-div">
+        <img src="assets/img/logo200ppi.png"/>
+      </div>
+
+      <div class="d-none d-md-block left-content-msg">
+        <div>
+          <h2 class="title">{{"signUp.title" | translate}}</h2>
+        </div>
+        <div>
+          <p class="subtext">{{"signUp.firstMessage" | translate}}</p>
+          <p class="subtext">{{"signUp.secondMessage" | translate}}<a href="mailto:contact@epiapi.com">contact@epiapi.com</a></p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-6 col-sm-12 sign-up-content">
+      <div class="login-outer-ctnr">
+        <span>{{"signUp.alreadyGotAccount" | translate}}</span>
+        <div class="login-ctnr d-inline-block">
+          <div routerLink="/sign-in" class="login">
+            {{"signIn.login" | translate}}
+            <img class="arrow d-md-inline-block" src="../../../assets/img/arrow-right-blue.svg" style="cursor: pointer;width: 45px" />
+          </div>
+        </div>
+      </div>
+      <form #accountForm="ngForm" class="padding-top-100">
+        <div>
+          <label for="emailTxt">{{"signIn.email" | translate}}</label>
+          <input [(ngModel)]="account.email" aria-describedby="emailHelp" class="form-control" id="emailTxt"
+                 placeholder="{{'signIn.email' | translate}}" type="email" name="email" required email #email="ngModel"/>
+
+          <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">{{"validation.emailRequired" | translate}}</div>
+        </div>
+        <div class="padding-top-10"></div>
+        <div>
+          <label for="passwordTxt">{{"signIn.password" | translate}}</label>
+          <input [(ngModel)]="account.password" aria-describedby="emailHelp" class="form-control" id="passwordTxt"
+                 placeholder="{{'signIn.password' | translate}}" type="password" name="password" required minlength="8" #password="ngModel" />
+          <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+            <div *ngIf="password.errors.required">
+              {{"validation.passwordRequired" | translate}}
+            </div>
+            <div *ngIf="password.errors.minlength">
+              {{"validation.passwordLength" | translate}}
+            </div>
+          </div>
+        </div>
+
+        <div class="padding-top-10"></div>
+        <div>
+          <label for="confirmPasswordTxt">{{"signIn.confirmPassword" | translate}}</label>
+          <input [(ngModel)]="accountConfirmPassword" aria-describedby="emailHelp" class="form-control" id="confirmPasswordTxt"
+                 placeholder="{{'signIn.confirmPassword' | translate}}" type="password" name="confirmPassword" required minlength="8" #confirmPassword="ngModel" />
+          <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" class="alert alert-danger">
+            <div *ngIf="confirmPassword.errors.required">
+              {{"validation.confirmPasswordRequired" | translate}}
+            </div>
+            <div *ngIf="confirmPassword.errors.minlength">
+              {{"validation.passwordLength" | translate}}
+            </div>
+          </div>
+        </div>
+
+        <div class="padding-top-10"></div>
+        <div class="profile-body">
+          <label>Parties</label>
+          <div class="row">
+            <div class="form-check">
+              <select id="langDdl" name="country">
+                <option *ngFor="let party of parties" value="{{party.id}}" (select)="getPartyValue(party.id)">
+                  {{party.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <ul>
+              <!--<li class="met">
+                <span>8 or more characters</span>
+              </li>-->
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <div class="form-check">
+              <label class="form-check-label" for="agreePolicyChk">
+                <input type="checkbox" [(ngModel)]="agreePolicy" (click)="acceptPolicy()" class="form-check-input" id="agreePolicyChk" name="agreePolicy" />
+                {{"signUp.acceptPolicy" | translate}}
+
+                <div class="alert alert-danger" [hidden]="agreePolicy || !submitted">
+                    {{"validation.acceptPolicy" | translate}}
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 err">{{errorMessage}}</div>
+        </div>
+        <div class="row continue">
+          <div class="col-12 text-right">
+            <button class="sign-up-btn btn btn-primary mb-4" [disabled]="!accountForm.form.valid" (click)="submit();">Create Account</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

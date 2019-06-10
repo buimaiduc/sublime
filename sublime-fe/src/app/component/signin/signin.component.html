@@ -1,0 +1,54 @@
+<div class="formContainer">
+  <div class="row">
+    <div class="col-md-6 col-sm-12 bg-color d-md-block">
+      <div class="col-md-8 offset-md-2" id="img-div">
+        <img src="assets/img/logo200ppi.png"/>
+      </div>
+
+      <div class="d-none d-md-block left-content-msg">
+        <div>
+          <h2 class="title">{{"signIn.title" | translate}}</h2>
+        </div>
+        <div>
+          <p class="subtext">{{"signIn.firstMessage" | translate}}</p>
+          <p class="subtext">{{"signIn.secondMessage" | translate}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-sm-12 right-content">
+      <form #accountForm="ngForm" class="right-content-form">
+        <div>
+          <label for="emailTxt">{{"signIn.email" | translate}}</label>
+          <input [(ngModel)]="email" aria-describedby="emailHelp" class="form-control" id="emailTxt"
+                 placeholder="{{'signIn.email' | translate}}" type="email" name="email" required #emailRef="ngModel"/>
+          <div *ngIf="emailRef.invalid && (emailRef.dirty || emailRef.touched)" class="alert alert-danger">{{"validation.emailRequired" | translate}}</div>
+        </div>
+        <div class="padding-top-10"></div>
+        <div>
+          <label for="passwordTxt">{{"signIn.password" | translate}}</label>
+          <input [(ngModel)]="password" aria-describedby="emailHelp" class="form-control" id="passwordTxt"
+                 placeholder="{{'signIn.password' | translate}}" type="password" name="password" #passwordRef="ngModel" required />
+          <div *ngIf="passwordRef.invalid && (passwordRef.dirty || passwordRef.touched)" class="alert alert-danger">{{"validation.passwordRequired" | translate}}</div>
+        </div>
+
+        <div class="padding-top-10" ></div>
+        <div class="row">
+          <div class="col-md-12 err">{{errorMessage}}</div>
+          <div class="col-md-12 err">{{contentResult}}</div>
+        </div>
+        <div class="row continue">
+          <div class="col-12 text-right">
+            <button class="sign-up-btn btn btn-primary mb-4" type="submit" [disabled]="!accountForm.form.valid" (click)="login();">{{"signIn.login" | translate}}</button>
+          </div>
+        </div>
+
+        <div class="row continue" style="float: right;">
+          <div class="col-12" routerLink="/sign-up">
+            {{"signIn.noAccount" | translate}}<span style="color: blue; cursor: pointer">{{"signIn.createOne" | translate}}</span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

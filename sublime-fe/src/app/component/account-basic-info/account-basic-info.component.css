@@ -1,0 +1,258 @@
+* {
+  box-sizing: border-box;
+}
+
+.settings {
+  background-color: #FAFAFA;
+  padding-bottom: 15px;
+}
+
+.api-keys > div > p {
+  font-weight: bold !important;
+}
+
+div > p{
+  margin: 0px;
+}
+
+.keys-table {
+  margin-top: 15px;
+  padding: 0px;
+}
+
+.row {
+  padding: 0px;
+  margin: 0px;
+}
+.row.even {
+  background-color: #FAFBFC;
+}
+
+.table-body > .row {
+  height: 50px;
+  padding: 15px 15px;
+  border-top: 1px solid #E7E9EB;
+  cursor: pointer;
+}
+
+.table-header {
+  padding-left: 15px;
+}
+
+.settings-nav-ctnr {
+  padding-top: 40px;
+  margin-bottom: 40px;
+  cursor: default;
+}
+
+.settings-nav-ctnr > div {
+  display: inline-block;
+  margin-left: 24px;
+}
+
+.basic-info-ctnr {
+  border-right: 2px solid #E7E9EB;
+  padding-right: 24px;
+  display: inline-block;
+  font-size: 15px;
+}
+
+.payment-methods-ctnr {
+  display: inline-block;
+  border-right: 2px solid #E7E9EB;
+  padding-right: 24px;
+  margin-left: 24px;
+  font-size: 15px;
+}
+
+.security-ctnr {
+  display: inline-block;
+  border-right: 2px solid #E7E9EB;
+  padding-right: 24px;
+  margin-left: 24px;
+  font-size: 15px;
+}
+
+.api-keys {
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  padding-bottom: 0;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+
+.value {
+  font-size: 13px;
+  margin-bottom: 0;
+  white-space: nowrap;
+  overflow-x: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  font-size: 15px;
+  color: red;
+}
+
+.nav-element {
+  font-size: 14px;
+  color: #384053;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  letter-spacing: 0;
+  -webkit-transition: color 50ms;
+  -o-transition: color 50ms;
+  -moz-transition: color 50ms;
+  transition: color 50ms;
+  float: right;
+  padding-left: 30px;
+}
+
+.title {
+  padding-top: 30px;
+}
+
+.modal-dialog {
+  margin-top: 60px;
+}
+
+.modal-content {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: .3rem;
+  outline: 0;
+}
+
+.modal-header {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+  border-top-left-radius: .3rem;
+  border-top-right-radius: .3rem;
+}
+
+.modal-header > p {
+  padding-top: 5px;
+}
+
+.modal-header .fa.fa-times {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
+}
+
+.modal-body {
+  position: relative;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1rem;
+}
+
+.modal-body .desc {
+  margin-bottom: 4px;
+  color: #9CA0A9;
+  font-size: 12px;
+}
+
+.modal-body .value {
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.modal-body .warning1 {
+  font-size: 12px;
+  color: #F44040;
+  margin-bottom: 0;
+}
+
+.modal-body .warning2 {
+  font-size: 12px;
+  color: #F44040;
+  margin-bottom: 15px;
+}
+
+.fa-times {
+  content: "\f00d";
+  box-sizing: border-box;
+}
+
+.active {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.profile-header {
+  padding-top: 15px;
+  font-size: 13px;
+  background-color: white;
+  padding-bottom: 25px;
+  border: 1px solid #E7E9EB;
+  border-radius: 1px;
+  max-height: 230px;
+}
+
+.profile-header .user-name {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.profile-body-wrap {
+  padding-right: 0;
+}
+
+.profile-body {
+  font-size: 13px;
+  padding-top: 15px;
+  background-color: white;
+  padding-bottom: 25px;
+  border: 1px solid #E7E9EB;
+  border-radius: 1px;
+  padding-right: 0;
+}
+
+.profile-header img {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 60px;
+  width: 60px;
+}
+
+.login {
+  float: right;
+}
+
+.account-activity-tb {
+  font-size: 15px;
+}
+
+.profile-body select {
+  width: 200px;
+}
+
+.profile-body button {
+  margin-left: 20px;
+}
+
+.profile-body .create-asset {
+  margin-bottom: 20px;
+}
